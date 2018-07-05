@@ -99,6 +99,12 @@ object MediaModel {
                         }
                     }
 
+                    //过滤媒体库中存在但实际不存在的文件
+                    val file = File(path)
+                    if (!file.exists()) {
+                        continue
+                    }
+
                     val imageItem = MediaFile(name, path, true, false, type, width, height, size, dateTime)
 
                     //处理默认勾选
@@ -178,6 +184,12 @@ object MediaModel {
                         if (width < Setting.minWidth || height < Setting.minHeight) {
                             continue
                         }
+                    }
+
+                    //过滤媒体库中存在但实际不存在的文件
+                    val file = File(path)
+                    if (!file.exists()) {
+                        continue
                     }
 
                     val videoItem = MediaFile(name, path, false, true, type, width, height, size, dateTime)
